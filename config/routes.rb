@@ -4,4 +4,8 @@ Rails.application.routes.draw do
 		resources :days  #para que una pelicula pueda ser asignado a muchos días
 	end
 
+	resources :movies do
+		resources :reservations
+	end
+
 end

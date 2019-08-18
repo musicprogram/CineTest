@@ -14,8 +14,10 @@ ActiveRecord::Schema.define(version: 2019_08_18_145115) do
 
   create_table "days", force: :cascade do |t|
     t.date "day_name"
+    t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_days_on_movie_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -23,10 +25,8 @@ ActiveRecord::Schema.define(version: 2019_08_18_145115) do
     t.string "description"
     t.string "img"
     t.integer "chair", default: 10
-    t.integer "day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["day_id"], name: "index_movies_on_day_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -39,6 +39,6 @@ ActiveRecord::Schema.define(version: 2019_08_18_145115) do
     t.index ["movie_id"], name: "index_reservations_on_movie_id"
   end
 
-  add_foreign_key "movies", "days"
+  add_foreign_key "days", "movies"
   add_foreign_key "reservations", "movies"
 end

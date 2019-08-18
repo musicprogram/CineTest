@@ -1,4 +1,4 @@
 class Movie < ApplicationRecord
-  belongs_to :day
+  has_many :days
   has_many :reservations
 end

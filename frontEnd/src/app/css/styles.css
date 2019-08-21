@@ -36,3 +36,9 @@
 .bajar{
   padding-bottom: 5px;
 }
+
+.btn{
+  border-radius: 50px; 
+  -moz-border-radius: 50px; 
+  -webkit-border-radius: 50px; 
+}

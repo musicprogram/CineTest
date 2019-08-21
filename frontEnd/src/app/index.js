@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-  sidenav.sidenav();
+  $('.sidenav').sidenav();
   $('.modal').modal();
 
 })
@@ -46,7 +46,7 @@ formNewMovie.addEventListener('submit', function(e){
 
 
 let urlJson = 'http://localhost:3000/movies'; // url api
-
+const indexMovies = document.querySelector('#indexMovies');
 
 
 function postRails(movie){ //crear en la BD en rails
@@ -60,8 +60,9 @@ function postRails(movie){ //crear en la BD en rails
 	    },
 	    body: JSON.stringify(movie)
 	  });
-	  // const content = await rawResponse.json(); // el dato que se guardó
-	 
+	  const content = await rawResponse.json(); // el dato que se guardó
+	 	console.log(content)
+	 	indexMovies.innerHTML += ui.MovieObject(content)
 	})();
 
 
@@ -69,7 +70,7 @@ function postRails(movie){ //crear en la BD en rails
 
 
 
-const indexMovies = document.querySelector('#indexMovies');
+
 
 
 fetch(urlJson) // index

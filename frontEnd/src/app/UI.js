@@ -35,8 +35,8 @@ class UI{
 	indexMovies(movies){
 
 
-		movies.forEach((movie, i)=>{
-		return	indexMovies.innerHTML += this.MovieObject(movie, i)			
+		movies.forEach((movie)=>{
+		return	indexMovies.innerHTML += this.MovieObject(movie)			
 		})
 
 
@@ -44,10 +44,10 @@ class UI{
 
 
 
-	MovieObject(movie, i){
+	MovieObject(movie){
 		return `
 				
-				<div id="movie_${i}" class="col m3 s12">
+				<div id="movie_${movie.id}" class="col m3 s12">
 				  <div class="card">
 				    <div class="card-content">
 					      <img src="${movie.img}" class="responsive-img">

@@ -1,11 +1,12 @@
+
 $(document).ready(function(){
-  $('.sidenav').sidenav();
+  sidenav.sidenav();
   $('.modal').modal();
 
 })
 
-require('./css/materialize.css');
-require('./css/styles.css');
+require('./css/materialize.css'); // estilos materialize css
+require('./css/styles.css'); // estilos personalizados css
 
 
 
@@ -20,7 +21,7 @@ containerForm.innerHTML = ui.formularioVista();
 ////////////////////
 
 //movies
-const Movie = require('./Movie.js');
+const Movie = require('./movies/Movie.js');
 //// inputs del formulario
 const nameMovie = document.querySelector('#nameMovie');
 const descriptionMovie = document.querySelector('#descriptionMovie');

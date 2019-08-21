@@ -36,16 +36,29 @@ class UI{
 
 
 		movies.forEach((movie, i)=>{
-		return	indexMovies.innerHTML += `
-				<li>
-					${movie.name}
-				</li>
-	
-			`
+		return	indexMovies.innerHTML += this.MovieObject(movie, i)			
 		})
 
 
 	}
+
+
+
+	MovieObject(movie, i){
+		return `
+				
+				<div id="movie_${i}" class="col m3 s12">
+				  <div class="card">
+				    <div class="card-content">
+					      <img src="${movie.img}" class="responsive-img">
+				    </div>
+				  </div>
+				</div>
+
+		`
+	}
+
+
 
 
 

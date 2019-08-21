@@ -61,8 +61,8 @@ function postRails(movie){ //crear en la BD en rails
 	    body: JSON.stringify(movie)
 	  });
 	  const content = await rawResponse.json(); // el dato que se guardó
-	 	console.log(content)
-	 	indexMovies.innerHTML += ui.MovieObject(content)
+	 	// console.log(content)
+	 	indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
 	})();
 
 

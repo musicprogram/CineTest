@@ -1,8 +1,8 @@
 class Movie{
 	constructor(nameMovie,descriptionMovie,imgMovie){
-		this.nameMovie = nameMovie,
-		this.descriptionMovie = descriptionMovie,
-		this.imgMovie = imgMovie
+		this.name = nameMovie,
+		this.description = descriptionMovie,
+		this.img = imgMovie
 	}
 } // crear el objeto para mandarlo a rails 
 

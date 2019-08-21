@@ -7,4 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Movie.create(name: 'the last guardian', description: 'lorem ipsum', img: 'http://www.aerocivil.gov.co/Style%20Library/Aerocivil/img/img.jpg')
+
+
+
+15.times do 
+	Movie.create(name: Faker::Movie.quote, description: Faker::Superhero.descriptor, img: Faker::Avatar.image)
+end

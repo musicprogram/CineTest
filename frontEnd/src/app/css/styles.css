@@ -1,0 +1,33 @@
+.container-fluid {
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto
+  }  
+
+
+ header, main, footer {
+    padding-left: 300px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
+
+
+
+/*** !important was needed for snippet ***/
+
+
+
+/* label focus color */
+ .input-field input:focus + label {
+   color: #1976d2 !important;
+ }
+ /* label underline focus color */
+ .input-field input:focus {
+   border-bottom: 1px solid #1976d2 !important;
+   box-shadow: 0 1px 0 0 #1976d2 !important
+ }

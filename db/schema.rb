@@ -12,9 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_08_18_145115) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "days", force: :cascade do |t|
     t.datetime "day_name"
-    t.integer "movie_id", null: false
+    t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_days_on_movie_id"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_145115) do
     t.string "cc"
     t.string "email"
     t.string "name"
-    t.integer "movie_id", null: false
+    t.bigint "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_reservations_on_movie_id"

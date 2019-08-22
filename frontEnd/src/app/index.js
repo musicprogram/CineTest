@@ -19,7 +19,7 @@ containerForm.innerHTML = ui.formularioVista();
 const datepickerFecha = document.querySelector('#datepickerFecha');
 const daysForm = document.querySelector('#daysForm');
 
-const arrayDates = [] // array nuevo para agregar cada una de las fechas , para agregarlo a la tabla Days
+let arrayDates = [] // array nuevo para agregar cada una de las fechas , para agregarlo a la tabla Days
 
 
 $(document).ready(function(){
@@ -124,11 +124,13 @@ function postRails(movie, arrayDates){ //crear en la BD en rails
 
 const Day = require('./days/Day.js');
 
-function postFormatDays(content,arrayDates){
-	arrayDates.forEach((date)=>{
+function postFormatDays(content,arrayDatesObject){
+	arrayDatesObject.forEach((date)=>{
 		let dayDate = new Day( date, content.id)
 		postDays(dayDate)
 	})
+
+	arrayDates = [];
 }
 
 

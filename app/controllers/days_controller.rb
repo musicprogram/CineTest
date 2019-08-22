@@ -29,6 +29,6 @@ class DaysController < ApplicationController
   private
 
   def day_params
-    params.require(:day).permit(:day_name)
+    params.require(:day).permit(:day_name, :movie_id)
   end
 end

@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_08_18_145115) do
 
   create_table "days", force: :cascade do |t|
-    t.date "day_name"
+    t.datetime "day_name"
     t.integer "movie_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

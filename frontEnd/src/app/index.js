@@ -1,9 +1,4 @@
 
-$(document).ready(function(){
-  $('.sidenav').sidenav();
-  $('.modal').modal();
-
-})
 
 require('./css/materialize.css'); // estilos materialize css
 require('./css/styles.css'); // estilos personalizados css
@@ -19,6 +14,45 @@ const ui = new UI()
 
 containerForm.innerHTML = ui.formularioVista();
 ////////////////////
+
+
+
+/////////////////// Days fecha de Movie
+const datepickerFecha = document.querySelector('#datepickerFecha');
+const daysForm = document.querySelector('#daysForm');
+
+$(document).ready(function(){
+  $('.sidenav').sidenav();
+  $('.modal').modal();
+
+  // fechas para asignar los días de presentación de la pelicula
+  const arrayDates = [] // array nuevo para agregar cada una de las fichas
+	$('.datepicker').datepicker({
+	  onClose(){
+	    let fecha = $('.datepicker').val(); //capturar valior de la fecha
+	    arrayDates.push(fecha) // push de la fecha al array
+	    console.log(arrayDates)
+	    daysForm.innerHTML += `
+	    	<span class="new badge blue">
+	    		${fecha}
+	    	</span>
+ 
+	    ` // agregar fechas en el formulario
+	    datepickerFecha.value = ''; // limpiar el input flied de la fecha actual 
+
+	    if(arrayDates.length >= 10){ // solo dejar agregar 10 fechas como máximo por pelicula
+	    	datepickerFecha.style.display = 'none'; // desaparecer el campo de fechas
+	    }
+	  }
+	})
+
+
+})
+
+
+
+
+
 
 //movies
 const Movie = require('./movies/Movie.js');

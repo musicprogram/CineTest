@@ -4,20 +4,29 @@ class UI{
 				
 				<form id="formNewMovie">				
 					<div class="input-field col s6">
-	          <input  id="nameMovie" type="text" class="validate" >
-	          <label for="nameMovie">Título</label>
-	        </div>
+			          <input  id="nameMovie" type="text" class="validate" >
+			          <label for="nameMovie">Título</label>
+			        </div>
 
 
-	        <div class="input-field col s6">
-	          <input  id="descriptionMovie" type="text" class="validate" >
-	          <label for="descriptionMovie">Descripción</label>
-	        </div>
+			        <div class="input-field col s6">
+			          <input  id="descriptionMovie" type="text" class="validate" >
+			          <label for="descriptionMovie">Descripción</label>
+			        </div>
 
-	        <div class="input-field col s6">
-	          <input  id="imgMovie" type="text" class="validate" >
-	          <label for="imgMovie">PostUrl</label>
-	        </div>
+			        <div class="input-field col s6">
+			          <input  id="imgMovie" type="text" class="validate" >
+			          <label for="imgMovie">Url Img</label>
+			        </div>
+		           <div class="input-field col s6">
+			         <div id="daysForm"></div>
+			        </div>
+			        
+			        <div class="input-field col s6">
+			          <input type="text" class="datepicker" id="datepickerFecha">
+			          <label for="imgMovie">Agregar Días</label>
+			        </div>
+			        
 					<div class="input-field right">
 						<button type="submit" class="btn waves-effect waves-light blue darken-1 white-text modal-close">
 							Crear nueva Película

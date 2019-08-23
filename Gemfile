@@ -45,3 +45,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'faker'
+
+
+gem 'ransack'
+
+
+

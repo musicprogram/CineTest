@@ -23,7 +23,7 @@ class UI{
 			        </div>
 			        
 			        <div class="input-field col s6">
-			          <input type="text" class="datepicker" id="datepickerFecha">
+			          <input type="text" class="datepicker datepicker-day" id="datepickerFecha">
 			          <label for="imgMovie">Agregar Días</label>
 			        </div>
 			        
@@ -68,7 +68,11 @@ class UI{
 	}
 
 
-
+	buscadorFecha(){
+		return `			
+					  <input type="text" class="datepicker-search" id="searchDay">
+		`
+	}
 
 
 }

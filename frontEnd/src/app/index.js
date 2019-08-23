@@ -25,7 +25,15 @@ let arrayDates = [] // array nuevo para agregar cada una de las fechas , para ag
 $(document).ready(function(){
   $('.sidenav').sidenav();
   $('.modal').modal();
+  $('.datepicker-search').datepicker({
 
+  	onClose(){ 	
+
+  			let ObjSearch = $('#searchDay').val();
+  			BuscarMovieRails(ObjSearch);
+  		
+  	}
+  })
   // fechas para asignar los días de presentación de la pelicula
   
 	$('.datepicker').datepicker({
@@ -35,7 +43,7 @@ $(document).ready(function(){
 	    if($('.datepicker').val() != ''){ // se valida que la fecha no este vacía
 	    	let fechaObj = (new Date(fecha))
 		    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-			let formatted_date = months[fechaObj.getMonth()] + " " + fechaObj.getDate() + " "  + fechaObj.getFullYear()
+				let formatted_date = months[fechaObj.getMonth()] + " " + fechaObj.getDate() + " "  + fechaObj.getFullYear()
 			
 			if(arrayDates.includes(formatted_date)){ // se valida que no se repita la fecha 
 				alert('No se puede repetir la misma fecha para la película')
@@ -99,6 +107,11 @@ formNewMovie.addEventListener('submit', function(e){
 
 let urlMoviesson = 'http://localhost:3000/movies'; // url api
 
+let urlDaysson = 'http://localhost:3000/days';
+
+
+
+
 const indexMovies = document.querySelector('#indexMovies');
 
 
@@ -141,7 +154,7 @@ function postFormatDays(content,arrayDatesObject){
 
 
 function postDays(dayDate){ //crear en la BD en rails
-		let urlDaysson = 'http://localhost:3000/days'; // url api
+
 		
 
 		(async () => {
@@ -171,6 +184,30 @@ function postDays(dayDate){ //crear en la BD en rails
 
 
 
+function BuscarMovieRails(ObjSearch){
+	console.log(ObjSearch)
+
+	let q = {
+		days_day_name_eq: ObjSearch
+	}
+
+	console.log(q)
+
+
+	fetch(urlMoviesson) // index de Movies
+	.then(function(response){
+		return response.json();
+	})
+	.then(function(movies){
+
+		ui.indexMovies(movies);
+
+	})
+
+
+
+}
+
 
 
 
@@ -188,3 +225,12 @@ fetch(urlMoviesson) // index de Movies
 
 
 
+
+
+
+/////////////// BUscador 
+
+
+const buscadorFecha = document.querySelector("#buscadorFecha");
+
+buscadorFecha.innerHTML = ui.buscadorFecha();

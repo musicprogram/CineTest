@@ -1,8 +1,10 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all
+    @q = Movie.ransack(params[:q])
+    @movies = @q.result
     render json: @movies
   end
+
 
   def create
     @movie = Movie.create(movie_params)

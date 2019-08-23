@@ -28,6 +28,20 @@ class MoviesController < ApplicationController
     end
   end
 
+
+
+  def update
+      @movie = Movie.find(params[:id])
+      if @movie.update(movie_params)
+        render json: { status: 'SUCCESS', message: 'updated the movie', data: @movie }
+      else
+        render json: { status: 'SUCCESS', message: 'loaded the movie', data: @movie }
+      end
+  end
+
+
+
+
   private
 
   def movie_params

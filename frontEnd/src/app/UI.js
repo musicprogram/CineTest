@@ -61,10 +61,10 @@ class UI{
 				    <div class="card-content">
 					      <img src="${movie.img}" class="responsive-img">
 					      <p class="center-align">
-							<button class="btn waves-effect waves-light blue modal-trigger" name="reservationButton" href="#ModalReservationNew">reservation</button>	
+					      		${this.verificarBotonReserva(movie)}
 		  		          
-		  		          	<small>${movie.chair}</small>
-		  		          </p>	
+	  		          
+  		          </p>	
 		  		         
 							
 				    </div>
@@ -72,6 +72,17 @@ class UI{
 				</div>
 
 		`
+	}
+
+	verificarBotonReserva(movie){
+		if(movie.chair > 0 ){
+			return `
+				<button class="btn waves-effect waves-light blue modal-trigger" name="reservationButton" href="#ModalReservationNew" id="btnReserv${movie.id}">reservation</button>	
+ 					<small id="reservation${movie.id}" class="blue-text">${movie.chair}</small>
+		 `
+		}else {
+			return ` `
+		}
 	}
 
 
@@ -105,6 +116,34 @@ class UI{
 			    <br>
 			</form> 
 		
+		`
+	}
+
+
+	indexReservations(reservation){
+		return `
+			 <table>
+			  <thead>
+			    <tr>
+			        <th>Película</th>
+			        <th>Nombre Reserva</th>
+			        <th>Email </th>
+			        <th>Cédula</th>
+
+			    </tr>
+			  </thead>
+
+			  <tbody>
+			    <tr>
+			      <td>${reservation.movie.title}</td>
+			      <td>${reservation.name}</td>
+			      <td>${reservation.email}</td>
+			      <td>${reservation.cc}</td>
+			    </tr>
+			    
+			  </tbody>
+			</table>	
+				
 		`
 	}
 

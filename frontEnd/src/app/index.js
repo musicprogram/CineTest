@@ -253,6 +253,8 @@ buscadorFecha.innerHTML = ui.buscadorFecha();
 
 /////////////////////////////// Reservations
 
+let cantidadSilla;
+
 let idMovie; //id de rails que se selecciona con el boton de reserva
 
 const urlReservation = 'http://localhost:3000/reservations';
@@ -271,14 +273,14 @@ function AddReservation(target){
 	// console.log(target)
 	if(target.name === 'reservationButton'){
 		idMovie = target.parentElement.parentElement.parentElement.parentElement.id;  ///id de rails que es el identificador de cada elemento
-
-		console.log(target.nextSibling.nextElementSibling.innerHTML) // seleccionar la cantidad de sillas que hay en la pelicula 
+		cantidadSilla = parseInt(target.nextSibling.nextElementSibling.innerHTML);
+		console.log(cantidadSilla) // seleccionar la cantidad de sillas que hay en la pelicula 
 	}
 }
 
 
 const formReservation = document.querySelector("#formReservation");
-console.log(formReservation);
+// console.log(formReservation);
 
 const nameReservation = document.querySelector('#nameReservation');
 const emailReservation = document.querySelector('#emailReservation');
@@ -308,10 +310,51 @@ function reservationpostRails(reservation){ //crear en la BD en rails
 	    body: JSON.stringify(reservation)
 	  });
 	    const content = await rawResponse.json(); // el dato que se guardó
-	 	console.log(content)
+	 		// console.log(content)
+	 		actualizarSillaMovie(content)
 	 	// indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
-
+	 		// console.log(content.movie_id)
 	})();
 
 
 }
+
+
+
+function actualizarSillaMovie(content){
+	(async () => {
+		let contChair = cantidadSilla - 1
+	  const rawResponse = await fetch(urlMoviesson + '/' + content.movie_id , {
+	    headers: { "Content-Type": "application/json; charset=utf-8" },
+		  method: 'PUT',
+		  body: JSON.stringify({
+		    chair: contChair
+		  })
+	  });
+	  const result = await rawResponse.json(); // el dato que se guardó
+	 	//console.log(result.data)
+	 	actualizarContSilla(result.data)
+	 	// console.log(result.message)
+	 	// indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
+
+	})();
+
+}
+
+
+
+function actualizarContSilla(data){
+	let url = `#reservation${data.id}`
+	let reservationSmall = document.querySelector(url);
+	console.log(reservationSmall)
+	reservationSmall.innerHTML = data.chair
+
+	if(data.chair <= 0){
+		let urlReserv = `#btnReserv${data.id}`;
+		let urlReservQuitar = document.querySelector(urlReserv);
+		urlReservQuitar.style.display = "none";
+		reservationSmall.style.display = "none";
+	}
+}
+
+

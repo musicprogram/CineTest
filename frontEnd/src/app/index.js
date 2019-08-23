@@ -22,7 +22,37 @@ const daysForm = document.querySelector('#daysForm');
 let arrayDates = [] // array nuevo para agregar cada una de las fechas , para agregarlo a la tabla Days
 
 
+
+
+let urlMoviesson = 'http://localhost:3000/movies'; // url api
+
+let urlDaysson = 'http://localhost:3000/days';
+
+
+
+
+
+fetch(urlMoviesson) // index de Movies
+	.then(function(response){
+		return response.json();
+	})
+	.then(function(movies){
+
+		ui.indexMovies(movies);
+
+	})
+
+
+
+
+
+
+
 $(document).ready(function(){
+
+  
+
+
   $('.sidenav').sidenav();
   $('.modal').modal();
   $('.datepicker-search').datepicker({
@@ -103,11 +133,6 @@ formNewMovie.addEventListener('submit', function(e){
 	console.log(arrayDates) // ver el array de fechas
 	daysForm.innerHTML = ''; // Limpiar el formulario con las fechas 
 })
-
-
-let urlMoviesson = 'http://localhost:3000/movies'; // url api
-
-let urlDaysson = 'http://localhost:3000/days';
 
 
 
@@ -212,16 +237,6 @@ function BuscarMovieRails(ObjSearch){
 
 
 
-fetch(urlMoviesson) // index de Movies
-	.then(function(response){
-		return response.json();
-	})
-	.then(function(movies){
-
-		ui.indexMovies(movies);
-
-	})
-
 
 
 
@@ -234,3 +249,69 @@ fetch(urlMoviesson) // index de Movies
 const buscadorFecha = document.querySelector("#buscadorFecha");
 
 buscadorFecha.innerHTML = ui.buscadorFecha();
+
+
+/////////////////////////////// Reservations
+
+let idMovie; //id de rails que se selecciona con el boton de reserva
+
+const urlReservation = 'http://localhost:3000/reservations';
+
+const reservationIndex = document.querySelector("#reservationIndex");
+
+reservationIndex.innerHTML = ui.reservationForm();
+
+
+indexMovies.addEventListener("click",(e)=>{
+	e.preventDefault()
+	AddReservation(e.target)
+})
+
+function AddReservation(target){
+	// console.log(target)
+	if(target.name === 'reservationButton'){
+		idMovie = target.parentElement.parentElement.parentElement.parentElement.id; 
+
+		console.log(idMovie)
+	}
+}
+
+
+const formReservation = document.querySelector("#formReservation");
+console.log(formReservation);
+
+const nameReservation = document.querySelector('#nameReservation');
+const emailReservation = document.querySelector('#emailReservation');
+const ccReservation = document.querySelector('#ccReservation');
+
+const Reservation = require('./reservations/Reservation.js');
+
+
+formReservation.addEventListener('submit', function(e){
+	e.preventDefault()
+	let reservation = new Reservation(nameReservation.value, emailReservation.value, ccReservation.value, idMovie);
+
+	reservationpostRails(reservation); // fecta hacia rails
+	formReservation.reset(); //resetear campos del formulario
+})
+
+function reservationpostRails(reservation){ //crear en la BD en rails
+
+		
+	(async () => {
+	  const rawResponse = await fetch(urlReservation, {
+	    method: 'POST',
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },
+	    body: JSON.stringify(reservation)
+	  });
+	    const content = await rawResponse.json(); // el dato que se guardó
+	 	console.log(content)
+	 	// indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
+
+	})();
+
+
+}

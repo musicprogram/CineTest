@@ -45,7 +45,7 @@ class UI{
 
 
 		movies.forEach((movie)=>{
-		return	indexMovies.innerHTML += this.MovieObject(movie)			
+			return	indexMovies.innerHTML += this.MovieObject(movie)			
 		})
 
 
@@ -56,10 +56,13 @@ class UI{
 	MovieObject(movie){
 		return `
 				
-				<div id="movie_${movie.id}" class="col m3 s12">
+				<div id="${movie.id}" class="col m3 s12">
 				  <div class="card">
 				    <div class="card-content">
 					      <img src="${movie.img}" class="responsive-img">
+					      <p class="center-align">
+							<button class="btn waves-effect waves-light blue modal-trigger" name="reservationButton" href="#ModalReservationNew">reservation</button>	
+					      </p>					      
 				    </div>
 				  </div>
 				</div>
@@ -68,9 +71,36 @@ class UI{
 	}
 
 
+
 	buscadorFecha(){
 		return `			
 					  <input type="text" class="datepicker-search" id="searchDay">
+		`
+	}
+
+	reservationForm(){ //formulario de reservas
+		return `  
+			<form id="formReservation">       
+			    <div class="input-field col s6">
+			      <input  id="nameReservation" type="text" class="validate" >
+			      <label for="nameMovie">Name</label>
+			    </div>
+			    <div class="input-field col s6">
+			      <input  id="emailReservation" type="text" class="validate" >
+			      <label for="descriptionMovie">Email</label>
+			    </div>
+			    <div class="input-field col s6">
+			      <input  id="ccReservation" type="text" class="validate" >
+			      <label for="imgMovie">CC</label>
+			    </div>			       
+			    <div class="input-field right">
+			      <button type="submit" class="btn waves-effect waves-light blue darken-1 white-text modal-close">
+			        Agregar Reserva
+			      </button> 
+			    </div>
+			    <br>
+			</form> 
+		
 		`
 	}
 

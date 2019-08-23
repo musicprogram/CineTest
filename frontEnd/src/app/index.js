@@ -82,7 +82,7 @@ $(document).ready(function(){
 				arrayDates.push(formatted_date)
 				console.log(arrayDates)
 		    daysForm.innerHTML += `
-		    	<span class="new badge blue">
+		    	<span class="white-text badge blue">
 		    		${formatted_date}
 		    	</span>
 	 
@@ -267,12 +267,12 @@ indexMovies.addEventListener("click",(e)=>{
 	AddReservation(e.target)
 })
 
-function AddReservation(target){
+function AddReservation(target){  
 	// console.log(target)
 	if(target.name === 'reservationButton'){
-		idMovie = target.parentElement.parentElement.parentElement.parentElement.id; 
+		idMovie = target.parentElement.parentElement.parentElement.parentElement.id;  ///id de rails que es el identificador de cada elemento
 
-		console.log(idMovie)
+		console.log(target.nextSibling.nextElementSibling.innerHTML) // seleccionar la cantidad de sillas que hay en la pelicula 
 	}
 }
 

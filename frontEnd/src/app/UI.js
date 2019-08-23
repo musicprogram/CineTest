@@ -62,7 +62,11 @@ class UI{
 					      <img src="${movie.img}" class="responsive-img">
 					      <p class="center-align">
 							<button class="btn waves-effect waves-light blue modal-trigger" name="reservationButton" href="#ModalReservationNew">reservation</button>	
-					      </p>					      
+		  		          
+		  		          	<small>${movie.chair}</small>
+		  		          </p>	
+		  		         
+							
 				    </div>
 				  </div>
 				</div>

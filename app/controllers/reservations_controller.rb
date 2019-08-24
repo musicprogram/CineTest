@@ -6,6 +6,8 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.create(reservation_params)
+    @reservation.name_movie = @reservation.movie.name
+    @reservation.save
     render json: @reservation
   end
 
@@ -13,6 +15,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:cc, :email,:name ,:movie_id)
+    params.require(:reservation).permit(:cc, :email,:name ,:movie_id, :name_movie)
   end
 end

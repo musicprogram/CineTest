@@ -134,7 +134,7 @@ class UI{
 			 					
 				return `
 					 <tr>
-				      <td>${reservation.movie_id}</td>
+				      <td>${reservation.name_movie}</td>
 				      <td>${reservation.name}</td>
 				      <td>${reservation.email}</td>
 				      <td>${reservation.cc}</td>

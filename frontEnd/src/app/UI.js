@@ -45,7 +45,7 @@ class UI{
 
 
 		movies.forEach((movie)=>{
-			return	indexMovies.innerHTML += this.MovieObject(movie)			
+			return	indexView.innerHTML += this.MovieObject(movie)			
 		})
 
 
@@ -120,32 +120,34 @@ class UI{
 	}
 
 
-	indexReservations(reservation){
-		return `
-			 <table>
-			  <thead>
-			    <tr>
-			        <th>Película</th>
-			        <th>Nombre Reserva</th>
-			        <th>Email </th>
-			        <th>Cédula</th>
+	indexReservations(reservations){
+		reservations.forEach((reservation)=>{
+			return bodyIndexReserva.innerHTML += this.reservationItem(reservation)			
+		})
 
-			    </tr>
-			  </thead>
-
-			  <tbody>
-			    <tr>
-			      <td>${reservation.movie.title}</td>
-			      <td>${reservation.name}</td>
-			      <td>${reservation.email}</td>
-			      <td>${reservation.cc}</td>
-			    </tr>
-			    
-			  </tbody>
-			</table>	
-				
-		`
 	}
+
+
+
+		reservationItem(reservation){
+		
+			 					
+				return `
+					 <tr>
+				      <td>${reservation.movie_id}</td>
+				      <td>${reservation.name}</td>
+				      <td>${reservation.email}</td>
+				      <td>${reservation.cc}</td>
+				    </tr>	
+
+				`
+
+	
+
+			
+		}
+
+
 
 
 }

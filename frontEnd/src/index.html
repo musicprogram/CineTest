@@ -7,23 +7,32 @@
 
     <!-- Compiled and minified CSS -->
 
-   
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
             
 </head>
 <body>
-	
-
-
 
     <ul id="slide-out" class="sidenav sidenav-fixed blue darken-1 white-text">
       <li>
         <h4 class="center-align">PLACE it</h4>
       </li>
+      
+          <li>
+            <a id="ReservationSidenav">
+              <i class="material-icons">event_available</i>
+              <p class="white-text">Reservas</p>
+            </a>
+          </li>
 
 
-      <li>
-        <p class="center-align">Reservas</p>
-      </li>
+      
+         <li>
+            <a id="MovieSidenav">
+              <i class="material-icons">local_movies</i>
+              <p class="white-text">Películas</p>
+            </a>
+          </li>
       
       
     </ul>
@@ -55,7 +64,27 @@
               
             </div>
             <div class="row">
-              <div id="indexMovies"></div>
+              <div id="indexView"></div>
+              <div id="indexReservaView" style="display: none;">
+                   <table>
+                    <thead>
+                      <tr>
+                          <th>película</th>
+                          <th>Nombre</th>
+                          <th>Email</th>
+                          <th>CC</th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="bodyIndexReserva">
+
+
+                    </tbody>
+
+                  </table>
+
+
+              </div>
             </div>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">

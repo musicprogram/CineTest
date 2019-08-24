@@ -28,7 +28,7 @@ let urlMoviesson = 'http://localhost:3000/movies'; // url api
 
 let urlDaysson = 'http://localhost:3000/days';
 
-
+const urlReservation = 'http://localhost:3000/reservations';
 
 
 
@@ -41,6 +41,19 @@ fetch(urlMoviesson) // index de Movies
 		ui.indexMovies(movies);
 
 	})
+
+
+fetch(urlReservation) // index de Movies
+	.then(function(response){
+		return response.json();
+	})
+	.then(function(movies){
+
+		ui.indexReservations(movies);
+
+	})
+
+
 
 
 
@@ -137,7 +150,7 @@ formNewMovie.addEventListener('submit', function(e){
 
 
 
-const indexMovies = document.querySelector('#indexMovies');
+const indexView = document.querySelector('#indexView');
 
 
 function postRails(movie, arrayDates){ //crear en la BD en rails
@@ -153,7 +166,7 @@ function postRails(movie, arrayDates){ //crear en la BD en rails
 	  });
 	  const content = await rawResponse.json(); // el dato que se guardó
 	 	// console.log(content)
-	 	indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
+	 	indexView.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
 	 	postFormatDays(content,arrayDates)
 	})();
 
@@ -251,20 +264,24 @@ const buscadorFecha = document.querySelector("#buscadorFecha");
 buscadorFecha.innerHTML = ui.buscadorFecha();
 
 
+
+
+
+
 /////////////////////////////// Reservations
 
 let cantidadSilla;
 
 let idMovie; //id de rails que se selecciona con el boton de reserva
 
-const urlReservation = 'http://localhost:3000/reservations';
+
 
 const reservationIndex = document.querySelector("#reservationIndex");
 
 reservationIndex.innerHTML = ui.reservationForm();
 
 
-indexMovies.addEventListener("click",(e)=>{
+indexView.addEventListener("click",(e)=>{
 	e.preventDefault()
 	AddReservation(e.target)
 })
@@ -288,10 +305,10 @@ const ccReservation = document.querySelector('#ccReservation');
 
 const Reservation = require('./reservations/Reservation.js');
 
-
+/////////
 formReservation.addEventListener('submit', function(e){
 	e.preventDefault()
-	let reservation = new Reservation(nameReservation.value, emailReservation.value, ccReservation.value, idMovie);
+	let reservation = new Reservation(ccReservation.value, emailReservation.value, nameReservation.value, idMovie);
 
 	reservationpostRails(reservation); // fecta hacia rails
 	formReservation.reset(); //resetear campos del formulario
@@ -321,7 +338,7 @@ function reservationpostRails(reservation){ //crear en la BD en rails
 
 
 
-function actualizarSillaMovie(content){
+function actualizarSillaMovie(content){ //actualizar Movie chair 
 	(async () => {
 		let contChair = cantidadSilla - 1
 	  const rawResponse = await fetch(urlMoviesson + '/' + content.movie_id , {
@@ -335,7 +352,7 @@ function actualizarSillaMovie(content){
 	 	//console.log(result.data)
 	 	actualizarContSilla(result.data)
 	 	// console.log(result.message)
-	 	// indexMovies.innerHTML += ui.MovieObject(content) //agregando el objeto pelicula a la vista
+	 
 
 	})();
 
@@ -343,7 +360,7 @@ function actualizarSillaMovie(content){
 
 
 
-function actualizarContSilla(data){
+function actualizarContSilla(data){ 
 	let url = `#reservation${data.id}`
 	let reservationSmall = document.querySelector(url);
 	console.log(reservationSmall)
@@ -352,9 +369,68 @@ function actualizarContSilla(data){
 	if(data.chair <= 0){
 		let urlReserv = `#btnReserv${data.id}`;
 		let urlReservQuitar = document.querySelector(urlReserv);
-		urlReservQuitar.style.display = "none";
-		reservationSmall.style.display = "none";
+		urlReservQuitar.style.visibility = "hidden";
+		reservationSmall.style.visibility = "hidden";
 	}
 }
 
 
+
+
+////////////////////////////////// vistas peliculas y reservaciones
+
+const indexReservaView = document.querySelector("#indexReservaView");
+
+const bodyIndexReserva = document.querySelector("#bodyIndexReserva");
+
+const ReservationSidenav = document.querySelector('#ReservationSidenav');
+
+const MovieSidenav = document.querySelector('#MovieSidenav');
+
+
+ReservationSidenav.addEventListener('click', (e)=>{
+	e.preventDefault()
+	
+	
+
+	fetch(urlReservation) // index de Movies
+	.then(function(response){
+		return response.json();
+	})
+	.then(function(reservations){
+
+		console.log(reservations);
+		indexView.innerHTML = '';
+		bodyIndexReserva.innerHTML = '';
+		indexView.style.display = "none";
+		indexReservaView.style.display = "";
+		ui.indexReservations(reservations);
+
+	})
+
+
+
+})
+
+MovieSidenav.addEventListener('click', (e)=>{
+	e.preventDefault()
+	
+	fetch(urlMoviesson) // index de Movies
+	.then(function(response){
+		return response.json();
+	})
+	.then(function(movies){
+		console.log(movies)
+		indexView.innerHTML = '';
+		bodyIndexReserva.innerHTML = '';
+		indexReservaView.style.display = "none";
+		indexView.style.display = "";
+
+		ui.indexMovies(movies);
+
+	})
+
+
+
+
+})

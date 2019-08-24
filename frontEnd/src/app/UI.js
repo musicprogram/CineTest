@@ -4,18 +4,18 @@ class UI{
 				
 				<form id="formNewMovie">				
 					<div class="input-field col s6">
-			          <input  id="nameMovie" type="text" class="validate" >
+			          <input  id="nameMovie" type="text" class="validate" required>
 			          <label for="nameMovie">Título</label>
 			        </div>
 
 
 			        <div class="input-field col s6">
-			          <input  id="descriptionMovie" type="text" class="validate" >
+			          <input  id="descriptionMovie" type="text" class="validate" required>
 			          <label for="descriptionMovie">Descripción</label>
 			        </div>
 
 			        <div class="input-field col s6">
-			          <input  id="imgMovie" type="text" class="validate" >
+			          <input  id="imgMovie" type="text" class="validate" required>
 			          <label for="imgMovie">Url Img</label>
 			        </div>
 		           <div class="input-field col s6">
@@ -28,7 +28,7 @@ class UI{
 			        </div>
 			        
 					<div class="input-field right">
-						<button type="submit" class="btn waves-effect waves-light blue darken-1 white-text modal-close">
+						<button type="submit" class="btn waves-effect waves-light blue darken-1 white-text">
 							Crear nueva Película
 						</button>	
 					</div>
@@ -97,19 +97,19 @@ class UI{
 		return `  
 			<form id="formReservation">       
 			    <div class="input-field col s6">
-			      <input  id="nameReservation" type="text" class="validate" >
-			      <label for="nameMovie">Name</label>
+			      <input  id="nameReservation" type="text" class="validate" placeholder="Nombre" required>
+
 			    </div>
 			    <div class="input-field col s6">
-			      <input  id="emailReservation" type="text" class="validate" >
-			      <label for="descriptionMovie">Email</label>
+			      <input  id="emailReservation" type="email" class="validate" placeholder="Email" required>
+			   
 			    </div>
 			    <div class="input-field col s6">
-			      <input  id="ccReservation" type="text" class="validate" >
-			      <label for="imgMovie">CC</label>
+			      <input  id="ccReservation" type="text" class="validate"placeholder="CC" required>
+
 			    </div>			       
 			    <div class="input-field right">
-			      <button type="submit" class="btn waves-effect waves-light blue darken-1 white-text modal-close">
+			      <button type="submit" class="btn waves-effect waves-light blue darken-1 white-text">
 			        Agregar Reserva
 			      </button> 
 			    </div>
@@ -129,23 +129,23 @@ class UI{
 
 
 
-		reservationItem(reservation){
-		
-			 					
-				return `
-					 <tr>
-				      <td>${reservation.name_movie}</td>
-				      <td>${reservation.name}</td>
-				      <td>${reservation.email}</td>
-				      <td>${reservation.cc}</td>
-				    </tr>	
-
-				`
-
+	reservationItem(reservation){
 	
+		 					
+			return `
+				 <tr>
+			      <td>${reservation.name_movie}</td>
+			      <td>${reservation.name}</td>
+			      <td>${reservation.email}</td>
+			      <td>${reservation.cc}</td>
+			    </tr>	
 
-			
-		}
+			`
+
+
+
+		
+	}
 
 
 

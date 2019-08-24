@@ -154,7 +154,7 @@ const indexView = document.querySelector('#indexView');
 
 
 function postRails(movie, arrayDates){ //crear en la BD en rails
-
+	$('.modal').modal('close');
 	(async () => {
 	  const rawResponse = await fetch(urlMoviesson, {
 	    method: 'POST',
@@ -316,7 +316,7 @@ formReservation.addEventListener('submit', function(e){
 
 function reservationpostRails(reservation){ //crear en la BD en rails
 
-		
+	$('.modal').modal('close');
 	(async () => {
 	  const rawResponse = await fetch(urlReservation, {
 	    method: 'POST',
@@ -377,7 +377,7 @@ function actualizarContSilla(data){
 
 
 
-////////////////////////////////// vistas peliculas y reservaciones
+////////////////////////////////// vistas peliculas y reservaciones , sidebar
 
 const indexReservaView = document.querySelector("#indexReservaView");
 
@@ -386,6 +386,9 @@ const bodyIndexReserva = document.querySelector("#bodyIndexReserva");
 const ReservationSidenav = document.querySelector('#ReservationSidenav');
 
 const MovieSidenav = document.querySelector('#MovieSidenav');
+
+const tituloApp = document.querySelector('#tituloApp');
+
 
 
 ReservationSidenav.addEventListener('click', (e)=>{
@@ -398,8 +401,8 @@ ReservationSidenav.addEventListener('click', (e)=>{
 		return response.json();
 	})
 	.then(function(reservations){
-
-		console.log(reservations);
+		tituloApp.innerHTML = 'Reservaciones' // título 
+		// console.log(reservations);
 		indexView.innerHTML = '';
 		bodyIndexReserva.innerHTML = '';
 		indexView.style.display = "none";
@@ -420,7 +423,8 @@ MovieSidenav.addEventListener('click', (e)=>{
 		return response.json();
 	})
 	.then(function(movies){
-		console.log(movies)
+		tituloApp.innerHTML = 'Películas' // título 
+		// console.log(movies)
 		indexView.innerHTML = '';
 		bodyIndexReserva.innerHTML = '';
 		indexReservaView.style.display = "none";

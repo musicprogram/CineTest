@@ -92,6 +92,7 @@ class UI{
 					  <input type="text" class="datepicker-search" id="searchDay">
 		`
 	}
+	
 
 	reservationForm(){ //formulario de reservas
 		return `  

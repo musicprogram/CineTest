@@ -63,16 +63,14 @@ fetch(urlReservation) // index de Movies
 
 $(document).ready(function(){
 
-  
-
 
   $('.sidenav').sidenav();
   $('.modal').modal();
-  $('.datepicker-search').datepicker({
-
+  $('.datepicker-search').datepicker({ /// Buscador principal
+  	format: 'yyyy-mm-dd',
   	onClose(){ 	
 
-  			let ObjSearch = $('#searchDay').val();
+  			let ObjSearch = $('#searchDay').val();  
   			BuscarMovieRails(ObjSearch);
   		
   	}
@@ -93,7 +91,7 @@ $(document).ready(function(){
 				 datepickerFecha.value = ''; // limpiar el input flied de la fecha actual 
 			} else{
 				arrayDates.push(formatted_date)
-				console.log(arrayDates)
+				//console.log(arrayDates)
 		    daysForm.innerHTML += `
 		    	<span class="white-text badge blue">
 		    		${formatted_date}
@@ -223,22 +221,20 @@ function postDays(dayDate){ //crear en la BD en rails
 
 
 function BuscarMovieRails(ObjSearch){
-	console.log(ObjSearch)
-
-	let q = {
-		days_day_name_eq: ObjSearch
-	}
-
-	console.log(q)
+	//console.log(ObjSearch)
 
 
-	fetch(urlMoviesson) // index de Movies
+	const UrlSearchMethod = `${urlMoviesson}?q%5Bdays_day_name_eq%5D=${ObjSearch}` 
+	// Url para buscar, se le envía el objeto buscando dentro de los días que hay pelicula
+	// console.log(UrlSearchMethod)
+
+	fetch(UrlSearchMethod) // 
 	.then(function(response){
 		return response.json();
 	})
 	.then(function(movies){
 
-		ui.indexMovies(movies);
+		console.log(movies) // retorno de busqueda 
 
 	})
 

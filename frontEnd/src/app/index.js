@@ -223,7 +223,6 @@ function postDays(dayDate){ //crear en la BD en rails
 function BuscarMovieRails(ObjSearch){
 	//console.log(ObjSearch)
 
-
 	const UrlSearchMethod = `${urlMoviesson}?q%5Bdays_day_name_eq%5D=${ObjSearch}` 
 	// Url para buscar, se le envía el objeto buscando dentro de los días que hay pelicula
 	// console.log(UrlSearchMethod)
@@ -233,8 +232,9 @@ function BuscarMovieRails(ObjSearch){
 		return response.json();
 	})
 	.then(function(movies){
-
-		console.log(movies) // retorno de busqueda 
+		indexView.innerHTML = '' // limpiar lo que hay 
+		ui.indexMovies(movies) // agregar las películas encontradas
+		console.log(movies.length) // retorno de busqueda 
 
 	})
 
